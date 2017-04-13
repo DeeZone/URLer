@@ -103,3 +103,13 @@ userToken(String), URL(String)
 Return:
 A collection of recommended URLs (Collection of Strings)
 ```
+
+## Test Coverage
+``
+./vendor/bin/phpunit
+``
+
+## Linting
+``
+$ php ./vendor/bin/phpcs --standard=PSR2 --colors -s app tests
+``

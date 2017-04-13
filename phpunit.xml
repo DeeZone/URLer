@@ -1,6 +1,11 @@
-<phpunit bootstrap="tests/bootstrap.php" colors="true" >
+<phpunit bootstrap="tests/bootstrap.php" colors="true" verbose="true" processIsolation="true" >
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">app</directory>
+        </whitelist>
+    </filter>
     <logging>
-        <log type="junit" target="build/logs/TEST-junit.xml" logIncompleteSkipped="false" title="Test Results"/>
+        <log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/>
     </logging>
     <testsuites>
         <testsuite name="base">

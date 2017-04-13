@@ -16,7 +16,6 @@ class StarterTest extends TestCase
      */
     public function testStart()
     {
-
-        $this->assertEquals( true,true);
+        $this->assertEquals(true, true);
     }
 }
