@@ -1,4 +1,4 @@
-# bastille-test
+# URLer
 An coding exercise from an agency who's name is from a [fortress in Paris](https://en.wikipedia.org/wiki/Bastille). 
 
 ## Introduction
