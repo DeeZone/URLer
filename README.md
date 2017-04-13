@@ -1,5 +1,5 @@
 # bastille-test
-An coding exercise from the Bastille Agency.
+An coding exercise from an agency who's name is a [fortress in Paris](https://en.wikipedia.org/wiki/Bastille). 
 
 ## Introduction
 Your startup is building a product where users can save URLs with the idea that they can retrieve them later (perhaps when they have time to read). You've been put in charge with writing the server-side implementation of this product through the three problems below.
