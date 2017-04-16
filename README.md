@@ -4,7 +4,14 @@ An coding exercise from an agency who's name is from a [fortress in Paris](https
 ## Introduction
 Your startup is building a product where users can save URLs with the idea that they can retrieve them later (perhaps when they have time to read). You've been put in charge with writing the server-side implementation of this product through the three problems below.
 
-## Instructions
+## Setup
+
+* This is a PHP based project. The PHP package manager [Composer](https://getcomposer.org) is needed setup the appplication.
+* Install all of the required packages:
+`$ composer install`
+* Run a demo use case of the application: `$ composer start` or `$ php index.php`
+
+## Functionality Goals
 
 * You have one hour to complete this assignment (*note that all three problems are building features of the same general product - as a result, they build off of each other and can be utilized in conjunction with each other*).
 * Your code is not required to compile or run (this is more of a whiteboard-type exercise).

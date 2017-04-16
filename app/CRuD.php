@@ -1,6 +1,6 @@
 <?php
 /**
- *
+ * Problem #1: CRUD without the U
  */
 declare(strict_types=1);
 
@@ -15,29 +15,35 @@ use \Exception;
  */
 class CRuD
 {
-    //
+    // The datastore object. Change to support different types of storage.
     private $dataStore;
 
+    /**
+     * CRuD constructor. Use memory based data store.
+     *
+     * From specification description:
+     * Because your startup's stack does not contain a database or external in-memory store such as Redis yet, you
+     * will **need** to store all data in memory.  Please define the datastructures you use as part of this exercise.
+     */
     public function __construct()
     {
         $this->dataStore = new MemoryDataStore();
     }
     /**
-     * @param $userToken string
-     * @param $URL string
+     * @param $data array
      * @throws Exception
      * @return boolean
      */
-    public function saveUrl(string $userToken, string $URL): bool
+    public function saveUrl(array $data): bool
     {
-        if (empty($userToken)) {
+        if (empty($data['userToken'])) {
             throw new Exception('saveUrl ERROR: Missing required user token value.');
         }
-        if (empty($URL)) {
+        if (empty($data['URL'])) {
             throw new Exception('saveUrl ERROR: Missing required URL value.');
         }
 
-        $result = $this->dataStore->saveData($userToken, $URL);
+        $result = $this->dataStore->saveData($data);
 
         return $result;
     }
