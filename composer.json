@@ -19,7 +19,7 @@
   "autoload": {
     "classmap": ["app/"],
     "psr-4": {
-      "Psr\\Hug\\" : "app/"
+      "DeeZone\\URLer\\" : "app/"
     }
   }
 }
