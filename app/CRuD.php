@@ -67,10 +67,15 @@ class CRuD
 
     /**
      * @param string $domain
+     * @throws Exception
      * @return array
      */
     public function getUsersByDomain(string $domain): array
     {
+        if (empty($domain)) {
+            throw new Exception('getUsersByDomain ERROR: Missing required domain value.');
+        }
+
         $results = [];
 
         return $results;
@@ -97,15 +102,6 @@ class CRuD
         $result = $this->dataStore->removeUrl($userToken, $URL);
 
         return $result;
-
-    }
-
-    /**
-     *
-     */
-    private function isNotNewUrlByUser(DataStructure $data, string $userToken, string $URL)
-    {
-
 
     }
 

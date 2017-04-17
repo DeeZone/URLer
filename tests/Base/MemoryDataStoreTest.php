@@ -76,14 +76,19 @@ class MemoryDataStoreTest extends TestCase
     }
 
     /**
-     * @return array
+     * @dataProvider getData
+     * @param $data
      */
-    public function getData()
+    public function testGetUrls($data)
     {
-        return [[
-            ['userToken' => 'lhgl8766b=jhjhg',
-             'URL' => 'http://thesite.com']
-        ]];
+        $memoryDataStore = new \DeeZone\URLer\MemoryDataStore();
+
+        $memoryDataStore->saveData($data);
+        $result = $memoryDataStore->getUrls($data['userToken']);
+        $this->assertEquals($data['URL'], $result[0]);
+
+        $resultCount = count($result);
+        $this->assertEquals(1, $resultCount);
     }
 
     /**
@@ -101,6 +106,35 @@ class MemoryDataStoreTest extends TestCase
         // Attempt to remove URL again, should return false
         $result = $memoryDataStore->removeUrl($data['userToken'], $data['URL']);
         $this->assertEquals(false, $result);
+    }
+
+    /**
+     * @dataProvider getData
+     * @param $data
+     */
+    public function testIsExistingData($data)
+    {
+        $memoryDataStore = new \DeeZone\URLer\MemoryDataStore();
+
+        $result = $memoryDataStore->isExistingData($data);
+        $this->assertEquals(false, $result);
+
+        $memoryDataStore->saveData($data);
+        $result = $memoryDataStore->isExistingData($data);
+        $this->assertEquals(true, $result);
+    }
+
+    /**
+     * @return array
+     */
+    public function getData()
+    {
+        return [[
+            [
+                'userToken' => 'lhgl8766b=jhjhg',
+                'URL' => 'http://thesite.com'
+            ]
+        ]];
     }
 
     /**

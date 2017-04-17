@@ -79,7 +79,7 @@ class MemoryDataStore extends DataStore
      * @param array $data
      * @return boolean
      */
-    private function isExistingData($data)
+    public function isExistingData($data)
     {
         if (isset($this->data[$data['userToken']]['URL'])) {
 
