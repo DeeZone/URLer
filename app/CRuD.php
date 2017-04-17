@@ -51,11 +51,18 @@ class CRuD
     /**
      *
      * @param $userToken string
+     * @throws Exception
      * @return array
      */
     public function getUrls(string $userToken): array
     {
+        if (empty($userToken)) {
+            throw new Exception('saveUrl ERROR: Missing required user token value.');
+        }
 
+        $result = $this->dataStore->getUrls($userToken);
+
+        return $result;
     }
 
     /**
@@ -72,10 +79,24 @@ class CRuD
     /**
      * @param $userToken string
      * @param $URL string
+     * @throws Exception
      * @return boolean
+     *
+     * A boolean value of whether or not the URL was successfully deleted. If the URL to be deleted had never been
+     * saved, the function should return false.
      */
     public function removeUrl(string $userToken, string $URL): bool
     {
+        if (empty($userToken)) {
+            throw new Exception('removeUrl ERROR: Missing required user token value.');
+        }
+        if (empty($URL)) {
+            throw new Exception('removeUrl ERROR: Missing required URL value.');
+        }
+
+        $result = $this->dataStore->removeUrl($userToken, $URL);
+
+        return $result;
 
     }
 

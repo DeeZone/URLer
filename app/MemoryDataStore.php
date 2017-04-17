@@ -20,7 +20,7 @@ class MemoryDataStore extends DataStore
     /**
      * @param array $data
      */
-    public function saveData(array $data)
+    public function saveData(array $data): bool
     {
         // Validate that values conform to schema structure
         foreach ($data as $field => $value) {
@@ -40,19 +40,36 @@ class MemoryDataStore extends DataStore
     }
 
     /**
-     *
+     * @param $userToken string
+     * @return array
      */
-    protected function getUrls()
+    public function getUrls(string $userToken): array
     {
+        $URLs = $this->data[$userToken]['URL'];
 
+        return $URLs;
     }
 
     /**
      *
      */
-    protected function removeUrl()
+    public function removeUrl(string $userToken, string $URL): bool
     {
+        $data = [
+            'userToken' => $userToken,
+            'URL' => $URL,
+        ];
+        if (!$this->isExistingData($data)) {
+            return false;
+        }
 
+        foreach ($this->data[$userToken]['URL'] as $urlIndex => $userUrl) {
+            if ($userUrl == $URL) {
+                unset($this->data[$userToken]['URL'][$urlIndex]);
+            }
+        }
+
+        return true;
     }
 
 

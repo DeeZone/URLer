@@ -19,7 +19,33 @@ abstract class DataStore implements DataStructure
         $this->schema();
     }
 
-    abstract public function saveData(array $data);
+    /**
+     * @param $data array
+     * @return boolean
+     *
+     * Return a boolean value of whether or not the URL was successfully saved. If the URL has been saved for the user
+     * previously, this function should not save it and return false.
+     */
+    abstract public function saveData(array $data): bool;
+
+    /**
+     * @param $userToken string
+     * @return boolean
+     *
+     * Return a boolean value of whether or not the URL was successfully saved. If the URL has been saved for the user
+     * previously, this function should not save it and return false.
+     */
+    abstract public function getUrls(string $userToken): array;
+
+    /**
+     * @param $userToken string
+     * @param $URL string
+     * @return boolean
+     *
+     * Return a boolean value of whether or not the URL was successfully saved. If the URL has been saved for the user
+     * previously, this function should not save it and return false.
+     */
+    abstract public function removeUrl(string $userToken, string $URL): bool;
 
     /**
      * Construct schema for reference throughout application.

@@ -35,7 +35,7 @@ class CRuDTest extends TestCase
      *
      * @expectedException \Exception
      */
-    public function testSaveUrlURLException()
+    public function testSaveUrlException()
     {
         $CRuD = new \DeeZone\URLer\CRuD();
 
@@ -44,5 +44,46 @@ class CRuDTest extends TestCase
             'URL' => '',
         ];
         $CRuD->saveUrl($data);
+    }
+
+    /**
+     * Should throw Exception if URL parameter is empty.
+     *
+     * @expectedException \Exception
+     */
+    public function testGetUrlsException()
+    {
+        $CRuD = new \DeeZone\URLer\CRuD();
+
+        $userToken = '';
+        $CRuD->getUrls($userToken);
+    }
+
+    /**
+     * Should throw Exception if userToken parameter is empty.
+     *
+     * @expectedException \Exception
+     */
+    public function testRemoveUrlUserTokenException()
+    {
+        $CRuD = new \DeeZone\URLer\CRuD();
+
+        $userToken = '';
+        $URL = 'http://thesite.com';
+        $CRuD->removeUrl($userToken, $URL);
+    }
+
+    /**
+     * Should throw Exception if userToken parameter is empty.
+     *
+     * @expectedException \Exception
+     */
+    public function testRemoveUrlUrlException()
+    {
+        $CRuD = new \DeeZone\URLer\CRuD();
+
+        $userToken = 'lhgl8766b=jhjhg';
+        $URL = '';
+        $CRuD->removeUrl($userToken, $URL);
     }
 }

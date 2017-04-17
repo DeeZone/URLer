@@ -63,13 +63,14 @@ class MemoryDataStoreTest extends TestCase
      * @dataProvider getData
      * @param $data
      */
-    public function testSaveDataTrue($data)
+    public function testSaveData($data)
     {
         $memoryDataStore = new \DeeZone\URLer\MemoryDataStore();
 
         $result = $memoryDataStore->saveData($data);
         $this->assertEquals(true, $result);
 
+        // Test for false response to attempt to write over existing data
         $result = $memoryDataStore->saveData($data);
         $this->assertEquals(false, $result);
     }
@@ -83,6 +84,23 @@ class MemoryDataStoreTest extends TestCase
             ['userToken' => 'lhgl8766b=jhjhg',
              'URL' => 'http://thesite.com']
         ]];
+    }
+
+    /**
+     * @dataProvider getData
+     * @param $data
+     */
+    public function testRemoveUrl($data)
+    {
+        $memoryDataStore = new \DeeZone\URLer\MemoryDataStore();
+
+        $memoryDataStore->saveData($data);
+        $result = $memoryDataStore->removeUrl($data['userToken'], $data['URL']);
+        $this->assertEquals(true, $result);
+
+        // Attempt to remove URL again, should return false
+        $result = $memoryDataStore->removeUrl($data['userToken'], $data['URL']);
+        $this->assertEquals(false, $result);
     }
 
     /**
