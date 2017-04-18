@@ -29,7 +29,7 @@ class URLer
         $users = [];
 
         foreach ($this->data as $userToken => $URLs) {
-            if (in_array($domain, $URLs)) {
+            if (in_array($domain, $URLs['URL'])) {
                 $users[] = $userToken;
             }
         }

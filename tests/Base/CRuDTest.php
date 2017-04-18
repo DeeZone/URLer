@@ -101,6 +101,18 @@ class CRuDTest extends TestCase
     }
 
     /**
+     * @dataProvider getData
+     * @param $data array
+     */
+    public function testExtractDomain($data)
+    {
+        $cRuD = new \DeeZone\URLer\CRuD();
+        $domain = $cRuD->extractDomain($data['URL']);
+
+        $this->assertEquals('thesite.com', $domain);
+    }
+
+    /**
      * @return array
      */
     public function getData()
@@ -109,7 +121,27 @@ class CRuDTest extends TestCase
             [
                 'userToken' => 'lhgl8766b=jhjhg',
                 'URL' => 'http://thesite.com'
-            ]
+            ],
+            [
+                'userToken' => 'ljLHlj986kjh68NN',
+                'URL' => 'http://thesite.com'
+            ],
+            [
+                'userToken' => 'lhgl8766b=jhjhg',
+                'URL' => 'http://theothersite.com'
+            ],
+            [
+                'userToken' => 'sdf765FG6^&kg',
+                'URL' => 'http://thesite.com'
+            ],
+            [
+                'userToken' => 'sdf765FG6^&kg',
+                'URL' => 'http://theothersite.com'
+            ],
+            [
+                'userToken' => 'JHG876gfgjh11',
+                'URL' => 'http://theothersite.com'
+            ],
         ]];
     }
 

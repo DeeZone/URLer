@@ -9,7 +9,7 @@ namespace Base;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class MemoryDataStoreTest
+ * Class URLerTestTest
  * @package Base
  */
 class URLerTest extends TestCase
@@ -42,12 +42,16 @@ class URLerTest extends TestCase
         }
 
         // Look for domain
-        $uRLer = new \DeeZone\URLer\URLer();
-        $results = $uRLer->getUsersByDomain($datas[0]['userToken']['URL']);
+        $uRLer = new \DeeZone\URLer\URLer($cRuD->getData());
+        $results = $uRLer->getUsersByDomain($cRuD->extractDomain($datas[0]['URL']));
 
         $this->assertEquals('lhgl8766b=jhjhg', $results[0]);
         $this->assertEquals('ljLHlj986kjh68NN', $results[1]);
-        $this->assertEquals('sdf765FG6^&kg', $results[3]);
+        $this->assertEquals('sdf765FG6^&kg', $results[2]);
+
+        $this->assertNotEquals('JHG876gfgjh11', $results[0]);
+        $this->assertNotEquals('JHG876gfgjh11', $results[1]);
+        $this->assertNotEquals('JHG876gfgjh11', $results[2]);
     }
 
     /**
@@ -55,7 +59,7 @@ class URLerTest extends TestCase
      */
     public function getData()
     {
-        return [[
+        return [[[
             [
                 'userToken' => 'lhgl8766b=jhjhg',
                 'URL' => 'http://thesite.com'
@@ -76,7 +80,11 @@ class URLerTest extends TestCase
                 'userToken' => 'sdf765FG6^&kg',
                 'URL' => 'http://theothersite.com'
             ],
-        ]];
+            [
+                'userToken' => 'JHG876gfgjh11',
+                'URL' => 'http://theothersite.com'
+            ],
+        ]]];
     }
 
     /**
