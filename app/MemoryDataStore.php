@@ -7,6 +7,7 @@ declare(strict_types=1);
 namespace DeeZone\URLer;
 
 use DeeZone\URLer\DataStructure;
+use DeeZone\URLer\CRuD;
 
 /**
  * Class MemoryDataStructure
@@ -18,7 +19,17 @@ class MemoryDataStore extends DataStore
     private $data;
 
     /**
+     * @return mixed
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    /**
      * @param array $data
+     * @throws \Exception
+     * @return bool
      */
     public function saveData(array $data): bool
     {
@@ -33,8 +44,8 @@ class MemoryDataStore extends DataStore
         if ($this->isExistingData($data)) {
             return false;
         }
-
-        $this->data[$data['userToken']]['URL'][] = $data['URL'];
+        $cRuD = new CRuD();
+        $this->data[$data['userToken']]['URL'][] = $cRuD->extractDomain($data['URL']);
 
         return true;
     }

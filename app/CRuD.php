@@ -108,8 +108,19 @@ class CRuD
     /**
      *
      */
-    private function extractDomain()
+    public function getData()
     {
+        return $this->dataStore->getData();
+    }
 
+    /**
+     * @param $url string
+     * @return string
+     */
+    public function extractDomain($url): string
+    {
+        $domain = parse_url($url, PHP_URL_HOST);
+
+        return $domain;
     }
 }
